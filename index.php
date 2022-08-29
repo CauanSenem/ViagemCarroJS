@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="" method="post">
-        <input type="text">
+        Carro<input type="text">
     </form>
 </body>
 </html>
