@@ -1,7 +1,6 @@
-<h1 style="text-align:center;">Listagem de Clientes</h1>
+<h1 style="text-align:center;">Listagem</h1>
 <?php
-    include_once("conexao.php");
-    $sql = 'SELECT v.IDCarro,v.Modelo,v.Placa,v.Nome,v.LocaldeOrigem,v.LocaldeDestino,v.KM,v.LitrosGastos,v.ValorGasolina from viagem v';
+    $sql = 'SELECT v.IDViagem,v.Modelo,v.Placa,v.Nome,v.LocaldeOrigem,v.LocaldeDestino,v.KM,v.LitrosGastos,v.ValorGasolina from viagem v';
     $consulta = $conn->prepare($sql);
     $consulta->execute();
 ?>
@@ -18,13 +17,16 @@
             <th scope="col">KM/Percoridos</th>
             <th scope="col">LTR/Usados</th>
             <th scope="col">Valor Gasolina</th>
+            <th scope="col">Autonomia</th>
+            <th scope="col">Valor Gasto</th>
+            <th scope="col">Total da Viagem</th>
         </tr>
     </thead>
     <tbody>
             <?php
             while ($linha = $consulta->fetch())
             {
-            echo "<tr><td>{$linha['IDCarro']}</td>";
+            echo "<tr><td>{$linha['IDViagem']}</td>";
             echo "<td>{$linha['Modelo']}</td>";
             echo "<td>{$linha['Placa']}</td>";
             echo "<td>{$linha['Nome']}</td>";
@@ -32,7 +34,14 @@
             echo "<td>{$linha['LocaldeDestino']}</td>";
             echo "<td>{$linha['KM']}</td>";
             echo "<td>{$linha['LitrosGastos']}</td>";
-            echo "<td>{$linha['ValorGasolina']}</td></tr>";
+            echo "<td>{$linha['ValorGasolina']}</td>";
+
+            $autonomia = $linha['KM']/$linha['LitrosGastos'];
+            $valorgasto = $linha['ValorGasolina']/$autonomia;
+            $total = $valorgasto * $linha['KM'];
+            echo "<td>{$autonomia}</td>";
+            echo "<td>{$valorgasto}</td>";
+            echo "<td>{$total}</td></tr>";
             }
             ?>
     </tbody>

@@ -7,7 +7,7 @@ $(document).ready(function(){
 
         xht.onload = function(){
 
-            $("#resp").text(this.responseText);
+            $("#resp").html(this.responseText);
 
         }
 

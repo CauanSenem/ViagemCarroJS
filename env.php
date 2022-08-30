@@ -16,6 +16,6 @@ $data->execute(array(
 
 ));
 
-    header("list.php");
+    include "list.php";
 
 ?>
