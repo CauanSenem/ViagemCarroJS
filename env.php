@@ -1,6 +1,6 @@
 <?php
 
-include_once("cone.php");
+include_once("conexao.php");
 
 $sql = "INSERT INTO viagem(Modelo,Placa,Nome,LocaldeOrigem,LocaldeDestino,KM,LitrosGastos,ValorGasolina)
 values (:Modelo,:Placa,:Nome,:LocaldeOrigem,:LocaldeDestino,:KM,:LitrosGastos,:ValorGasolina)";
